@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trắc nghiệm Điện tử CNTT</title>
+    <title>Trắc nghiệm Giữa kỳ - Hệ thống Bách Khoa</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; line-height: 1.6; padding: 20px; }
         .quiz-container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 10px;}
+        h1 { text-align: center; color: #b71c1c; border-bottom: 2px solid #e8eaed; padding-bottom: 10px;}
         .question-header { display: flex; justify-content: space-between; font-weight: bold; color: #5f6368; margin-bottom: 15px; }
         .question-text { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; color: #202124; }
         .question-image { max-width: 100%; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px; display: none; }
@@ -23,31 +23,25 @@
         .feedback.success { background-color: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
         .feedback.error { background-color: #fef7f6; color: #c5221f; border: 1px solid #fce8e6; }
         .nav-buttons { display: flex; justify-content: space-between; margin-top: 25px; }
-        button.nav-btn { padding: 10px 25px; background-color: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: bold; transition: 0.2s; }
-        button.nav-btn:hover:not(:disabled) { background-color: #1557b0; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        button.nav-btn { padding: 10px 25px; background-color: #b71c1c; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: bold; transition: 0.2s; }
+        button.nav-btn:hover:not(:disabled) { background-color: #d32f2f; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         button.nav-btn:disabled { background-color: #e8eaed; color: #9aa0a6; cursor: not-allowed; }
-        #score-container { text-align: center; margin-top: 30px; font-size: 1.5em; display: none; padding: 20px; background: #e8f0fe; border-radius: 10px; color: #1967d2;}
-        .instruction { font-size: 0.9em; color: #d93025; font-style: italic; margin-bottom: 20px; text-align: center;}
+        #score-container { text-align: center; margin-top: 30px; font-size: 1.5em; display: none; padding: 20px; background: #ffebee; border-radius: 10px; color: #b71c1c;}
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
-    <h1>Kiểm tra Giữa kì - Điện tử CNTT</h1>
-    
+    <h1>Bài thi GK số 1 - HUST</h1>
     
     <div id="quiz-header" class="question-header">
-        <span id="question-number">Câu 1/27</span>
+        <span id="question-number">Câu 1/11</span>
         <span id="current-score">Điểm: 0</span>
     </div>
     
     <div id="question-text" class="question-text">Đang tải câu hỏi...</div>
-    
-    <!-- Khung hiển thị hình ảnh -->
-    <img id="question-image" class="question-image" src="" alt="Hình ảnh mạch điện bị thiếu. Vui lòng kiểm tra lại file ảnh của bạn.">
-    
+    <img id="question-image" class="question-image" src="" alt="Hình ảnh">
     <ul class="options" id="options-list"></ul>
-
     <div id="feedback-msg" class="feedback"></div>
 
     <div class="nav-buttons">
@@ -57,40 +51,23 @@
 
     <div id="score-container">
         🎉 <strong>Bạn đã hoàn thành bài thi!</strong><br><br>
-        Tổng điểm của bạn là: <span id="score" style="font-size: 2em; font-weight: bold;"></span> / 27
+        Tổng điểm: <span id="score" style="font-size: 2em; font-weight: bold;"></span> / 11
     </div>
 </div>
 
 <script>
-    // Dữ liệu câu hỏi. ĐÃ CẬP NHẬT LẠI ĐÁP ÁN CHUẨN XÁC NHẤT.
     const quizData = [
-        { q: "Điện trở có thể được mô tả là:", opts: ["Tính chất vật lý của chất liệu", "Đặc tính điện của mạch", "Khả năng phản kháng dòng điện", "Tất cả các phương án trên"], ans: 3 },
-        { q: "Các điều kiện nào dưới đây thường là không thể xảy ra trong một mạch điện?", opts: ["Có dòng điện và không có điện áp", "Có điện áp và không có dòng điện", "Có điện áp và có dòng điện", "Không có dòng điện và không có điện áp"], ans: 0 },
-        { q: "Màu nào trên điện trở tương ứng với giá trị 4?", opts: ["Đỏ", "Cam", "Vàng", "Nâu"], ans: 2 },
-        { q: "Điện trở có thể bị hỏng do:", opts: ["Quá tải điện", "Nhiệt độ cao", "Ảnh hưởng của môi trường", "Tất cả các nguyên nhân trên"], ans: 3 },
-        { q: "Cho mạch điện trong hình dưới đây. Với giá trị điện trở đo được trên đồng hồ đo điện trở là 404.8Ω, có thể kết luận gì?", opts: ["Điện trở R1 bị hở (hỏng)", "Điện trở R2 bị hở (hỏng)", "Điện trở R3 bị hở (hỏng)", "Không thể kết luận"], ans: 1, img: "cau5.png" },
-        { q: "Trong mạch điện trên có ít nhất một điện trở bị hở (hỏng). Dựa vào giá trị của mỗi lần đo tuần tự như trên hình, có thể kết luận điện trở nào bị hỏng?", opts: ["Điện trở R1 bị hở (hỏng)", "Điện trở R2 bị hở (hỏng)", "Điện trở R3 bị hở (hỏng)", "Điện trở R4 bị hở (hỏng)"], ans: 2, img: "cau6.png" },
-        { q: "Cho mạch điện trong hình. Khi công tắc ở vị trí D người ta đo được dòng qua R5 là 6mA. Khi công tắc chuyển sang vị trí C, thì điện áp rơi trên điện trở R3 là bao nhiêu?", opts: ["8.1V", "4.5V", "0.0V", "5.4V"], ans: 2, img: "cau7.png" },
-        { q: "Để một diode làm việc ở chế độ tích cực thuận thì điều kiện nào cần phải thỏa mãn?", opts: ["Cả hai khối bán dẫn đều nối điện áp âm", "Cả hai khối bán dẫn đều nối điện áp dương", "Khối P nối điện áp dương, khối N nối điện áp âm", "Khối P nối điện áp âm, khối N nối điện áp dương"], ans: 2 },
-        { q: "Đối với một lớp tiếp giáp p-n, hàng rào thế năng (barrier potential) và độ rộng vùng nghèo có mối liên hệ thế nào?", opts: ["Không có mối liên hệ", "Hàng rào thế năng càng lớn thì độ rộng vùng nghèo càng nhỏ", "Hàng rào thế năng càng lớn thì độ rộng vùng nghèo càng lớn", "Không có đáp án đúng"], ans: 2 },
-        { q: "Cho mạch diode chỉnh lưu như hình. Điện áp cực đại rơi trên điện trở RL là bao nhiêu? Giả sử diode có Vy = 0.7V.", opts: ["30V", "20V", "29.7V", "29.3V"], ans: 3, img: "cau10.png" },
-        { q: "Trong mạch điện diode cầu như hình, các đồng hồ đều hiển thị đúng giá trị đo được. Linh kiện nào của mạch bị hỏng?", opts: ["Điện trở R bị ngắn mạch", "Mạch diode cầu bị hỏng", "Điện trở RL bị hở mạch", "Tụ điện bị ngắn mạch"], ans: 3, img: "cau11.png" },
-        { q: "Mạch khuếch đại sử dụng transistor BJT thường cần:", opts: ["Chỉ một nguồn điện", "Nguồn điện một chiều", "Nguồn điện xoay chiều", "Không cần nguồn điện"], ans: 1 },
-        { q: "Cho mạch transistor BJT loại PNP (Dòng cực E đi vào, B đi ra). Sơ đồ tương đương 1 chiều đúng của mạch này là sơ đồ nào?", opts: ["Sơ đồ có Diode hướng từ C sang B, nguồn dòng mũi tên hướng xuống", "Sơ đồ có Diode hướng từ E sang B, nguồn dòng hình thoi mũi tên hướng lên trên (từ E lên C)", "Sơ đồ có Diode hướng từ B sang E, nguồn dòng mũi tên hướng xuống", "Sơ đồ có Diode hướng từ B sang E, nguồn dòng mũi tên hướng lên"], ans: 1 },
-        { q: "Cho mạch điện như hình. Các thông số: VBE(on)=0.7V, β=100. Giả sử VBB=4V, VCC=8V, RB=220kΩ, RC=2kΩ. Giá trị dòng điện IBQ là bao nhiêu?", opts: ["0.018 mA", "0.015 mA", "0.021 mA", "0.003 mA"], ans: 1, img: "cau14.png" },
-        { q: "Cho mạch điện như hình trên. Các thông số: VBE(on)=0.7V, β=100, VBB=5V, VCC=8V, RB=220kΩ, RC=2kΩ. Giá trị dòng ICQ là bao nhiêu?", opts: ["1.95 mA", "2.59 mA", "0.32 mA", "2.27 mA"], ans: 0, img: "cau14.png" },
-        { q: "Cho mạch điện như hình trên. Các thông số: VBE(on)=0.7V, β=100, VBB=5V, VCC=8V, RB=220kΩ, RC=2kΩ. Giá trị dòng IEQ là bao nhiêu?", opts: ["1.97 mA", "2.62 mA", "0.32 mA", "2.30 mA"], ans: 0, img: "cau14.png" },
-        { q: "Cho mạch điện như hình trên. Các thông số: VBE(on)=0.7V, β=100, VBB=5V, VCC=8V, RB=220kΩ, RC=2kΩ. Công suất tiêu tán của BJT là bao nhiêu?", opts: ["10.6 mW", "8.0 mW", "1.3 mW", "9.3 mW"], ans: 1, img: "cau14.png" },
-        { q: "Cho mạch transistor và mạch tương đương 1 chiều như hình. R1=30kΩ, R2=25kΩ, RC=1kΩ, RE=0.5kΩ, VCC=8V. Hãy tính điện trở RTH và điện áp VTH?", opts: ["RTH=62.5 kΩ, VTH=4.4 V", "RTH=13.6 kΩ, VTH=3.6 V", "RTH=25 kΩ, VTH=14.7 V", "RTH=30 kΩ, VTH=17.6 V"], ans: 1, img: "cau18.png" },
-        { q: "Cho mạch transistor (có tụ CE mắc song song RE). VA=∞, β=180, VBE(on)=0.7V. Đặc điểm của mạch tương đương xoay chiều đúng là gì?", opts: ["Cực E không nối đất, có điện trở RE và có ro", "Cực E nối thẳng xuống đất (mass), không có điện trở RE và không có ro ở ngõ ra", "Cực E nối đất qua điện trở RE, không có ro", "Cực E nối thẳng xuống đất, có ro song song RC"], ans: 1 },
-        { q: "Cho mạch khuếch đại transistor. VA=∞, RS=0.5kΩ, RC=2kΩ, RE=0.5kΩ, β=120, VBE(on)=0.7V, VCC=10V, R1=250kΩ, R2=75kΩ. Hệ số khuếch đại điện áp của mạch là?", opts: ["-3.78", "-98.8", "-125.56", "-4.3"], ans: 0, img: "cau20.png" },
-        { q: "Cho mạch khuếch đại vi sai. R1=10kΩ; R2=30kΩ; v1=0.5V; v2=0.1V. Điện áp đầu ra so với GND là bao nhiêu?", opts: ["-0.8 V", "1.2 V", "0.8 V", "-1.2 V"], ans: 3, img: "cau21.png" },
-        { q: "Cho mạch khuếch đại như hình. R1=10kΩ, R2=30kΩ, R3=10kΩ. Tính toán hệ số khuếch đại điện áp của mạch?", opts: ["-3.0", "3.0", "-1.5", "1.5"], ans: 0, img: "cau22.png" },
-        { q: "Để phát hiện điện trở nào bị ngắn mạch ở mạch trong hình, người ta đo dòng điện toàn mạch và điện áp. Dựa vào kết quả đo được (Dòng 25mA, Áp trên R3 là 0V), có thể kết luận điện trở nào bị ngắn mạch?", opts: ["Điện trở R1 bị ngắn mạch", "Điện trở R2 bị ngắn mạch", "Điện trở R3 bị ngắn mạch", "Không thể kết luận"], ans: 2, img: "cau23.png" },
-        { q: "Điện trở trong mạch RC ảnh hưởng đến:", opts: ["Thời gian sạc", "Thời gian xả", "Không ảnh hưởng", "Cả thời gian sạc và xả"], ans: 3 },
-        { q: "Khi tụ điện xả điện qua một điện trở, điện áp sẽ giảm theo:", opts: ["Đường thẳng", "Hàm số mũ (Đường cong)", "Biên độ sin", "Hàm bậc hai"], ans: 1 },
-        { q: "Cho mạch khuếch đại sau: v1=1V; v2=2V; v3=3V; Rf=30kΩ; R1=20kΩ, R2=20kΩ, R3=30kΩ. Điện áp đầu ra so với GND là bao nhiêu?", opts: ["-7.5 V", "7.0 V", "7.5 V", "-7.0 V"], ans: 0, img: "cau26.png" },
-        { q: "Cho mạch khuếch đại không đảo có R1=10kΩ, R2=10kΩ. Hãy tính hệ số khuếch đại điện áp của mạch?", opts: ["1", "-1", "2", "-2"], ans: 2, img: "cau27.png" }
+        { q: "Để đo dòng điện chạy qua một linh kiện điện tử thụ động cần mắc Ampe kế nối tiếp với linh kiện?", opts: ["True", "False"], ans: 0 },
+        { q: "Trong một nguyên tử, electron càng gần hạt nhân càng có năng lượng cao?", opts: ["True", "False"], ans: 1 },
+        { q: "Mạch sau đây được gọi là mạch gì? (Tín hiệu đi vào cực B, lấy ra cực C, cực E nối đất chung)", opts: ["Mạch B chung", "Mạch E chung", "Mạch C chung", "Không có đáp án đúng"], ans: 1 },
+        { q: "Điện trở của một dây đồng là 20Ω ở nhiệt độ 10°C. Vậy ở nhiệt độ 60°C giá trị điện trở của dây đồng sẽ thế nào?", opts: ["Tăng", "Giảm", "Giữ nguyên"], ans: 0 },
+        { q: "Cho mạch điện BJT như hình. Tính hệ số khuếch đại điện áp Av?", opts: ["-4.32", "-5.00", "-4.46", "-4.59"], ans: 2, img: "cau5_moi.png" },
+        { q: "Cho mạch phân cực BJT (VBB=4V, VCC=8V, RB=220k, RC=2k). Tính VCE?", opts: ["3.8V", "5V", "8V", "4V"], ans: 1, img: "cau6_moi.png" },
+        { q: "Cho mạch phân cực BJT (VBB=4V, VCC=8V, RB=220k, RC=2k). Tính công suất tiêu tán của BJT?", opts: ["7.511mW", "7.5mW", "7.995mW", "16.96mW"], ans: 2, img: "cau7_moi.png" },
+        { q: "Cho mạch phân cực phân áp. VCC=3.5V, RC=6k, RE=2k. Tại Q có ICQ=0.15mA. Tính VCE?", opts: ["1.3V", "Không có đáp án đúng", "2.8V", "2.3V"], ans: 3, img: "cau8_moi.png" },
+        { q: "Cho mạch phân cực phân áp. VCC=3.5V, RC=6k, RE=2k, ICQ=0.15mA, R_TH=200k. Tính R1 và R2?", opts: ["582kΩ và 165kΩ", "582kΩ và 415kΩ", "582kΩ và 305kΩ", "582kΩ và 295kΩ"], ans: 2, img: "cau9_moi.png" },
+        { q: "Trong mạch điện tam giác như hình, giá trị dòng điện I và công suất P (trên điện trở 4Ω) là bao nhiêu?", opts: ["I=14.67A, P=144W", "I=14.67A, P=256W", "I=11A, P=484W", "I=6A, P=256W"], ans: 1, img: "cau10_moi.png" },
+        { q: "Trong mạch điện như hình, với V=30V mắc vào cực Cathode (vạch sọc), diode D phân cực thuận?", opts: ["True", "False"], ans: 1 }
     ];
 
     let currentQuestion = 0;
@@ -113,7 +90,6 @@
         optionsList.innerHTML = '';
         feedbackMsg.className = 'feedback';
         
-        // Xử lý hiển thị ảnh
         if (q.img) {
             questionImage.src = q.img;
             questionImage.style.display = 'block';
@@ -165,7 +141,7 @@
         } else {
             btnElement.classList.add('wrong');
             buttons[q.ans].classList.add('correct');
-            feedbackMsg.textContent = "❌ Sai rồi! Đáp án đúng đã được bôi xanh.";
+            feedbackMsg.textContent = "❌ Sai rồi! Đáp án đúng đã được hiển thị màu xanh.";
             feedbackMsg.className = 'feedback show error';
         }
     }
@@ -181,7 +157,6 @@
             document.getElementById('feedback-msg').style.display = 'none';
             document.querySelector('.nav-buttons').style.display = 'none';
             document.getElementById('quiz-header').style.display = 'none';
-            document.getElementById('instruction-txt').style.display = 'none';
             
             const scoreContainer = document.getElementById('score-container');
             scoreContainer.style.display = 'block';
@@ -196,7 +171,6 @@
         }
     }
 
-    // Khởi chạy khi load trang
     loadQuestion();
 </script>
 
